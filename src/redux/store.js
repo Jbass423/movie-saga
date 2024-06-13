@@ -25,17 +25,17 @@ function* fetchAllMovies() {
   }
 }
 
-function* fetchGenres (){
-  try{
-  const genreResponse = yield axios.get('/api/genres')
-  console.log('checking genre', genreResponse.data);
-  yield put({
-    type : 'SET_GENRES',
-    payload : response.data
-  })
-} catch(error){
-  console.log("error in genre fetch ", error );
-}
+function* fetchGenres() {
+  try {
+    const genreResponse = yield axios.get('/api/genres');
+    console.log('checking genre', genreResponse.data);
+    yield put({
+      type: 'SET_GENRES',
+      payload: genreResponse.data
+    });
+  } catch (error) {
+    console.log("error in genre fetch ", error);
+  }
 }
 
 // Create sagaMiddleware

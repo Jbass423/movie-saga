@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function MovieList() {
+  const history = useHistory()
 
   const dispatch = useDispatch();
   const movies = useSelector(store => store.movies);
@@ -10,6 +12,10 @@ function MovieList() {
   useEffect(() => {
     dispatch({ type: 'FETCH_MOVIES' });
   }, []);
+
+  const handleMovieClick = (movieId) => {
+    history.push(`/movies/${movieId}`); 
+  };
 
   return (
     <main>
@@ -20,6 +26,9 @@ function MovieList() {
             <div data-testid='movieItem' key={movie.id}>
               <h3>{movie.title}</h3>
               <img src={movie.poster} alt={movie.title}/>
+              <li key={movie.id} onClick={() => handleMovieClick(movie.id)}>
+            {movie.title}
+          </li>
             </div>
           );
         })}
