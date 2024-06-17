@@ -13,7 +13,7 @@ function MovieList() {
     dispatch({ type: 'FETCH_MOVIES' });
   }, []);
 
-  const handleMovieClick = (movieId, genreIds) => {
+  const handleMovieClick = (movieId) => {
     history.push(`/movies/${movieId}`); 
   };
 
