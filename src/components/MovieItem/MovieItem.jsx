@@ -6,12 +6,13 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 const MovieDetails = () => {
+    const allItems = useSelector((state)=> state.allItems)
     const { movieId } = useParams();
     const dispatch = useDispatch();
     const genres = useSelector((store) => store.genres)
     const movie = useSelector((store) => store.movies.find((m) => m.id === Number(movieId)));
     const history = useHistory()
-    console.log('checkig gen in item', genres);
+    console.log('checkig gen in item', allItems);
 
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
@@ -31,7 +32,7 @@ const MovieDetails = () => {
     const genreIds = movie.genre_ids || [];
     const filteredGenres = genres.filter((gen) => genreIds.includes(gen.id));
 
-console.log("genreids", genreIds)
+//console.log("genreids", genreIds)
 
     return (
         <div data-testid="movieDetails" >
@@ -39,7 +40,7 @@ console.log("genreids", genreIds)
             <p>{movie.description}</p>
             <img src={movie.poster}/>
                         <h3>Genres</h3>
-            <GenreList genres={genres}  data-testid="movieItem"/>
+            <GenreList filteredGenres={filteredGenres}  data-testid="movieItem"/>
             <button data-testid="toList" onClick={returnHome}>home</button>
         </div>
     );
