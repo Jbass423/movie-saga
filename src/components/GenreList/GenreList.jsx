@@ -1,14 +1,14 @@
 import React from 'react';
 
-const GenreList = ({ filteredGenres }) => {
+const GenreList = ({genres}) => {
     
 
     return (
         <ul>
-            {filteredGenres.map((gen) => (
-                <li key={gen.id}>{gen.name}</li>
-            ))}
-        </ul>
+      {genres.map((gen, index) => (
+        <li key={index}>{gen}</li>
+      ))}
+    </ul>
     );
 };
 
